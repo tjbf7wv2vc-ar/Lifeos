@@ -1,81 +1,46 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07111a">
-  <meta name="description" content="LIFEOS: organiza tus tareas, agenda y objetivos desde un solo lugar.">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <title>LIFEOS — Tu día, bajo control</title>
-  <style>
-    :root{color-scheme:dark;--bg:#07111a;--panel:#101f2a;--panel2:#142733;--mint:#00d1ad;--muted:#91a4b0;--line:#203541}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f4f8fa;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    button,input,select{font:inherit}button{cursor:pointer}.app{max-width:850px;margin:auto;min-height:100dvh;padding:24px 18px 100px}
-    header{display:flex;justify-content:space-between;align-items:center;margin:6px 0 28px}.brand{font-size:29px;font-weight:900;letter-spacing:-1.2px}.brand span{color:var(--mint)}
-    .date,.muted{color:var(--muted)}h1{font-size:27px;margin:8px 0}h2{font-size:20px;margin:0 0 15px}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:14px}
-    .number{font-size:30px;font-weight:800}.mint{color:var(--mint)}.row{display:flex;align-items:center;gap:12px}.between{justify-content:space-between}
-    .progress{height:9px;background:#263a45;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--mint);width:0}
-    .item{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}
-    .item .body{flex:1;min-width:0}.item strong{display:block;overflow-wrap:anywhere}.item small{color:var(--muted)}
-    .check{width:23px;height:23px;border:1.5px solid #77909d;border-radius:50%;background:transparent;color:var(--mint)}
-    .check.done{background:var(--mint);border-color:var(--mint);color:#052019}.btn{border:0;border-radius:12px;padding:12px 15px;background:var(--mint);color:#052019;font-weight:750}
-    .btn.secondary{background:var(--panel2);color:#f4f8fa;border:1px solid var(--line)}.iconbtn{border:0;background:transparent;color:var(--muted);font-size:20px;padding:5px}
-    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}.toolbar .btn{flex:1}
-    nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#09151eF2;border-top:1px solid var(--line);display:flex;justify-content:center;padding:9px 4px calc(9px + env(safe-area-inset-bottom));backdrop-filter:blur(18px)}
-    nav button{flex:1;max-width:150px;border:0;background:transparent;color:var(--muted);font-size:11px;padding:7px 2px}nav button b{display:block;font-size:20px;margin-bottom:3px}nav button.active{color:var(--mint)}
-    .field{width:100%;padding:13px;border-radius:11px;border:1px solid var(--line);background:#0a1720;color:white;margin:7px 0 13px}
-    label{font-size:13px;color:var(--muted)}.hidden{display:none!important}.empty{text-align:center;color:var(--muted);padding:28px 10px}
-    .tag{font-size:11px;border-radius:20px;padding:4px 8px;background:#20333e;color:#b8cbd3}.danger{color:#ff9a9a}
-    .chat{display:flex;flex-direction:column;gap:10px;margin:15px 0}.bubble{max-width:88%;padding:12px 14px;border-radius:15px;background:var(--panel2);line-height:1.45}.bubble.me{align-self:flex-end;background:#064d43}
-    .formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media(min-width:650px){.app{padding-top:35px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-  </style>
-</head>
-<body>
-<div class="app">
-  <header><div class="brand">LIFE<span>OS</span></div><span class="tag">BETA · GRATIS</span></header>
-  <main id="view"></main>
-</div>
-<nav>
-  <button data-tab="home" class="active"><b>⌂</b>Inicio</button>
-  <button data-tab="agenda"><b>▦</b>Agenda</button>
-  <button data-tab="tasks"><b>✓</b>Tareas</button>
-  <button data-tab="ai"><b>✧</b>LIFEOS AI</button>
-  <button data-tab="profile"><b>◎</b>Perfil</button>
-</nav>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111a"><link rel="manifest" href="manifest.webmanifest">
+<title>LIFEOS</title>
+<style>
+:root{color-scheme:dark;--bg:#07111a;--card:#10212c;--line:#263b47;--mint:#00d1ad;--muted:#9aabb5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f5f8fa;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:850px;margin:auto;padding:24px 17px 100px}header{display:flex;justify-content:space-between;align-items:center;margin:8px 0 28px}.logo{font-size:29px;font-weight:900}.logo span{color:var(--mint)}
+h1{font-size:27px;margin:8px 0}h2{font-size:19px}.muted,small{color:var(--muted)}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{font-size:29px;font-weight:800}.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}
+button,input,select{font:inherit}button{cursor:pointer}.btn{border:0;border-radius:12px;padding:12px 15px;background:var(--mint);color:#052019;font-weight:750}.secondary{background:#1b303c;color:white;border:1px solid var(--line)}
+.field{width:100%;padding:12px;background:#091720;border:1px solid var(--line);border-radius:10px;color:white;margin:7px 0 12px}
+.item{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}.item .grow{flex:1;min-width:0}.check{border:1px solid #7e929d;background:transparent;color:var(--mint);border-radius:50%;width:25px;height:25px}
+.progress{height:8px;background:#263b47;border-radius:10px;overflow:hidden}.progress i{display:block;background:var(--mint);height:100%}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:#09151ef5;border-top:1px solid var(--line);padding:8px 2px calc(8px + env(safe-area-inset-bottom))}
+nav button{flex:1;max-width:150px;background:none;border:0;color:var(--muted);font-size:11px;padding:5px 1px}nav button b{display:block;font-size:20px}nav button.active{color:var(--mint)}
+.plan{position:relative}.plan.featured{border:1.5px solid var(--mint)}.price{font-size:32px;font-weight:850}.price small{font-size:13px;font-weight:400}.pill{font-size:11px;color:#06221c;background:var(--mint);border-radius:20px;padding:5px 9px;font-weight:800}
+ul{padding-left:20px;line-height:1.8;color:#d5e0e5}.disabled{opacity:.55}.note{font-size:12px;line-height:1.5;color:var(--muted)}.empty{text-align:center;padding:25px;color:var(--muted)}
+</style></head>
+<body><main><header><div class="logo">LIFE<span>OS</span></div><span class="pill">BETA</span></header><section id="view"></section></main>
+<nav><button data-tab="home" class="active"><b>⌂</b>Inicio</button><button data-tab="tasks"><b>✓</b>Tareas</button><button data-tab="agenda"><b>▦</b>Agenda</button><button data-tab="assistant"><b>✧</b>AI</button><button data-tab="profile"><b>◎</b>Perfil</button></nav>
 <script>
-const $=s=>document.querySelector(s), today=()=>new Date().toISOString().slice(0,10);
-const read=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}};
-let tasks=read('lifeos.tasks',[{id:crypto.randomUUID(),title:'Define tus prioridades',date:today(),priority:'Alta',done:false},{id:crypto.randomUUID(),title:'Planifica tu semana',date:today(),priority:'Media',done:false}]);
-let events=read('lifeos.events',[]), profile=read('lifeos.profile',{name:''}), tab='home', chat=[{me:false,text:'Hola. Soy LIFEOS. Puedo ayudarte a organizar tareas, estudio y objetivos. ¿Qué necesitas planificar?'}];
-const save=()=>{localStorage.setItem('lifeos.tasks',JSON.stringify(tasks));localStorage.setItem('lifeos.events',JSON.stringify(events));localStorage.setItem('lifeos.profile',JSON.stringify(profile))};
+const $=s=>document.querySelector(s),today=()=>new Date().toISOString().slice(0,10);
+let tasks=JSON.parse(localStorage.getItem('lo.tasks')||'[]'),events=JSON.parse(localStorage.getItem('lo.events')||'[]'),name=localStorage.getItem('lo.name')||'',tab='home',chat=['Hola. Soy LIFEOS. Puedo ayudarte a organizar tareas y objetivos.'];
+const save=()=>{localStorage.setItem('lo.tasks',JSON.stringify(tasks));localStorage.setItem('lo.events',JSON.stringify(events));localStorage.setItem('lo.name',name)};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function go(t){tab=t;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));render()}
-function taskRow(t){return `<div class="item"><button class="check ${t.done?'done':''}" onclick="toggleTask('${t.id}')">${t.done?'✓':''}</button><div class="body"><strong style="${t.done?'text-decoration:line-through;color:#91a4b0':''}">${esc(t.title)}</strong><small>${esc(t.date||'Sin fecha')} · ${esc(t.priority)}</small></div><button class="iconbtn" onclick="editTask('${t.id}')">✎</button><button class="iconbtn danger" onclick="removeTask('${t.id}')">×</button></div>`}
-function render(){
- const v=$('#view'),pending=tasks.filter(t=>!t.done),done=tasks.filter(t=>t.done),pct=tasks.length?Math.round(done.length/tasks.length*100):0;
- if(tab==='home')v.innerHTML=`<p class="date">${new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</p><h1>${greeting()}${profile.name?', '+esc(profile.name):''}</h1><p class="muted">Un paso cada vez. Organiza lo que importa.</p><div class="grid"><div class="card"><div class="number">${pending.length}</div><div class="muted">Pendientes</div></div><div class="card"><div class="number">${done.length}</div><div class="muted">Completadas</div></div><div class="card"><div class="number">${events.length}</div><div class="muted">Eventos</div></div><div class="card"><div class="number mint">${pct}%</div><div class="muted">Progreso</div></div></div><div class="card"><div class="row between"><h2>Progreso de tareas</h2><b class="mint">${pct}%</b></div><div class="progress"><i style="width:${pct}%"></i></div></div><div class="row between"><h2>Prioridades</h2><button class="btn secondary" onclick="go('tasks')">Ver todas</button></div><div class="card">${pending.slice(0,4).map(taskRow).join('')||'<div class="empty">No tienes tareas pendientes.</div>'}</div><div class="card"><h2>Próximo evento</h2>${events.filter(e=>e.date>=today()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,1).map(e=>`<strong>${esc(e.title)}</strong><p class="muted">${esc(e.date)} · ${esc(e.time||'')}</p>`).join('')||'<p class="muted">Tu agenda está despejada.</p>'}</div>`;
- if(tab==='tasks')v.innerHTML=`<div class="row between"><div><p class="date">ORGANIZACIÓN</p><h1>Tus tareas</h1></div><button class="btn" onclick="taskForm()">＋ Nueva tarea</button></div><div class="card"><h2>Pendientes (${pending.length})</h2>${pending.map(taskRow).join('')||'<div class="empty">Todo al día.</div>'}</div><div class="card"><h2>Completadas (${done.length})</h2>${done.map(taskRow).join('')||'<div class="empty">Aún no has completado tareas.</div>'}</div>`;
- if(tab==='agenda')v.innerHTML=`<div class="row between"><div><p class="date">PLANIFICACIÓN</p><h1>Agenda</h1></div><button class="btn" onclick="eventForm()">＋ Evento</button></div><div class="card">${events.slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).map(e=>`<div class="item"><div class="body"><strong>${esc(e.title)}</strong><small>${esc(e.date)} · ${esc(e.time||'')}</small></div><button class="iconbtn danger" onclick="removeEvent('${e.id}')">×</button></div>`).join('')||'<div class="empty">Todavía no hay eventos. Añade el primero.</div>'}</div>`;
- if(tab==='profile')v.innerHTML=`<p class="date">TU ESPACIO</p><h1>Perfil</h1><div class="card"><h2>Personalización</h2><label>Nombre</label><input id="name" class="field" value="${esc(profile.name)}" placeholder="¿Cómo te llamas?"><button class="btn" onclick="saveProfile()">Guardar perfil</button></div><div class="card"><h2>Tu plan</h2><div class="row between"><strong>LIFEOS Gratis</strong><span class="tag">ACTIVO</span></div><p class="muted">Esta versión beta no procesa pagos. Las funciones Premium aún no están disponibles.</p></div><div class="card"><h2>Tus datos</h2><p class="muted">Se guardan en este navegador. No hay cuenta ni sincronización entre dispositivos.</p><button class="btn secondary" onclick="exportData()">Exportar mis datos</button></div>`;
- if(tab==='ai')v.innerHTML=`<p class="date">ASISTENTE DE PRODUCTIVIDAD</p><h1>LIFEOS AI</h1><p class="muted">Asistente básico local. No se conecta a un modelo de IA.</p><div class="card chat" id="chat">${chat.map(m=>`<div class="bubble ${m.me?'me':''}">${esc(m.text)}</div>`).join('')}</div><form onsubmit="sendChat(event)" class="row"><input id="prompt" class="field" style="margin:0" placeholder="Escribe tu mensaje…"><button class="btn">Enviar</button></form>`;
+function task(t){return `<div class="item"><button class="check" onclick="toggle('${t.id}')">${t.done?'✓':''}</button><div class="grow"><b>${esc(t.title)}</b><br><small>${esc(t.date)} · ${esc(t.priority)}</small></div><button class="secondary" onclick="del('${t.id}')">×</button></div>`}
+function render(){let v=$('#view'),pending=tasks.filter(t=>!t.done),done=tasks.filter(t=>t.done),pct=tasks.length?Math.round(done.length/tasks.length*100):0;
+if(tab==='home')v.innerHTML=`<p class="muted">${new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'})}</p><h1>Hola${name?', '+esc(name):''}</h1><p class="muted">Organiza lo que importa.</p><div class="grid"><div class="card"><div class="stat">${pending.length}</div><small>Pendientes</small></div><div class="card"><div class="stat">${done.length}</div><small>Completadas</small></div></div><div class="card"><div class="row between"><b>Progreso</b><b style="color:var(--mint)">${pct}%</b></div><div class="progress"><i style="width:${pct}%"></i></div></div><h2>Prioridades</h2><div class="card">${pending.slice(0,4).map(task).join('')||'<div class="empty">Todo al día.</div>'}</div><button class="btn" onclick="go('tasks')">＋ Añadir tarea</button>`;
+if(tab==='tasks')v.innerHTML=`<div class="row between"><h1>Tareas</h1><button class="btn" onclick="addTask()">＋ Nueva</button></div><div class="card"><h2>Pendientes</h2>${pending.map(task).join('')||'<div class="empty">Sin pendientes.</div>'}</div><div class="card"><h2>Completadas</h2>${done.map(task).join('')||'<div class="empty">Aún no hay tareas completadas.</div>'}</div>`;
+if(tab==='agenda')v.innerHTML=`<div class="row between"><h1>Agenda</h1><button class="btn" onclick="addEvent()">＋ Evento</button></div><div class="card">${events.sort((a,b)=>a.date.localeCompare(b.date)).map(e=>`<div class="item"><div class="grow"><b>${esc(e.title)}</b><br><small>${esc(e.date)} · ${esc(e.time)}</small></div><button class="secondary" onclick="removeEvent('${e.id}')">×</button></div>`).join('')||'<div class="empty">Tu agenda está vacía.</div>'}</div>`;
+if(tab==='assistant')v.innerHTML=`<h1>LIFEOS AI</h1><p class="muted">Asistente local básico; no utiliza un modelo generativo.</p><div class="card">${chat.map((m,i)=>`<p style="padding:10px;border-radius:12px;background:${i%2?'#06483f':'#1b303c'}">${esc(m)}</p>`).join('')}</div><form onsubmit="send(event)" class="row"><input id="msg" class="field" placeholder="Escribe aquí…"><button class="btn">Enviar</button></form>`;
+if(tab==='profile')v.innerHTML=`<h1>Tu perfil</h1><div class="card"><label>Nombre</label><input id="name" class="field" value="${esc(name)}" placeholder="Tu nombre"><button class="btn" onclick="saveName()">Guardar</button></div><h2>Elige tu plan</h2><div class="card plan"><div class="row between"><h2>Gratis</h2><span class="pill">ACTUAL</span></div><div class="price">0 €</div><ul><li>Tareas y agenda básicas</li><li>Seguimiento de progreso</li><li>Asistente local básico</li></ul></div><div class="card plan featured"><div class="row between"><h2>LIFEOS Plus</h2><span class="pill">POPULAR</span></div><div class="price">2,99 € <small>/ mes · precio propuesto</small></div><ul><li>Estadísticas semanales y mensuales</li><li>Hábitos y rachas</li><li>Planificación semanal guiada</li><li>Temas y personalización</li></ul><button class="btn secondary" disabled>Próximamente</button></div><div class="card plan"><h2>LIFEOS Pro</h2><div class="price">5,99 € <small>/ mes · precio propuesto</small></div><ul><li>Todo lo incluido en Plus</li><li>Objetivos y proyectos avanzados</li><li>Informes y exportación avanzada</li><li>Plantillas de planificación</li><li>Funciones avanzadas de organización</li></ul><button class="btn secondary" disabled>Próximamente</button></div><p class="note">Los planes y precios son propuestas para validar, no ofertas activas. No hay pagos configurados y ningún botón realiza cobros. Antes de vender habrá que implementar un proveedor de pagos, términos, privacidad y soporte, con la ayuda de un adulto responsable si es necesario.</p>`;
 }
-function greeting(){let h=new Date().getHours();return h<12?'Buenos días':h<20?'Buenas tardes':'Buenas noches'}
-function taskForm(id){let t=tasks.find(x=>x.id===id);let title=prompt('Nombre de la tarea:',t?.title||'');if(title===null||!title.trim())return;let date=prompt('Fecha (AAAA-MM-DD):',t?.date||today());let priority=prompt('Prioridad: Baja, Media o Alta',t?.priority||'Media');if(t){t.title=title.trim();t.date=date||today();t.priority=priority||'Media'}else tasks.unshift({id:crypto.randomUUID(),title:title.trim(),date:date||today(),priority:priority||'Media',done:false});save();render()}
-function editTask(id){taskForm(id)}
-function toggleTask(id){let t=tasks.find(x=>x.id===id);if(t)t.done=!t.done;save();render()}
-function removeTask(id){tasks=tasks.filter(x=>x.id!==id);save();render()}
-function eventForm(){let title=prompt('Nombre del evento:');if(!title||!title.trim())return;let date=prompt('Fecha (AAAA-MM-DD):',today());let time=prompt('Hora (HH:MM):','09:00');events.push({id:crypto.randomUUID(),title:title.trim(),date:date||today(),time:time||''});save();render()}
-function removeEvent(id){events=events.filter(e=>e.id!==id);save();render()}
-function saveProfile(){profile.name=$('#name').value.trim();save();render()}
-function exportData(){let blob=new Blob([JSON.stringify({tasks,events,profile},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='lifeos-datos.json';a.click();URL.revokeObjectURL(a.href)}
-function sendChat(e){e.preventDefault();let q=$('#prompt').value.trim();if(!q)return;chat.push({me:true,text:q},{me:false,text:reply(q)});render()}
-function reply(q){let s=q.toLowerCase();if(s.includes('estudi')||s.includes('examen'))return 'Divide el temario en bloques. Trabaja 25 minutos, descansa 5 y al final intenta explicar lo aprendido sin mirar los apuntes. ¿Qué asignatura preparas?';if(s.includes('plan')||s.includes('organ')||s.includes('día'))return 'Anota lo pendiente, elige tres prioridades y reserva un bloque realista para cada una. Empieza por la tarea de mayor impacto.';if(s.includes('objetivo')||s.includes('meta'))return 'Define un resultado concreto, ponle fecha y divídelo en pasos pequeños. ¿Cuál es el primer paso?';return 'Puedo ayudarte a ordenar tareas, estudiar y dividir objetivos en pasos. Dime qué quieres conseguir y para cuándo.'}
-document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-render();
-</script>
-</body>
-</html>
+function addTask(){let title=prompt('Nombre de la tarea');if(!title?.trim())return;let date=prompt('Fecha AAAA-MM-DD',today())||today();let priority=prompt('Prioridad: Baja, Media o Alta','Media')||'Media';tasks.unshift({id:crypto.randomUUID(),title:title.trim(),date,priority,done:false});save();render()}
+function toggle(id){let t=tasks.find(x=>x.id===id);if(t)t.done=!t.done;save();render()}
+function del(id){tasks=tasks.filter(x=>x.id!==id);save();render()}
+function addEvent(){let title=prompt('Nombre del evento');if(!title?.trim())return;let date=prompt('Fecha AAAA-MM-DD',today())||today();let time=prompt('Hora HH:MM','09:00')||'';events.push({id:crypto.randomUUID(),title:title.trim(),date,time});save();render()}
+function removeEvent(id){events=events.filter(x=>x.id!==id);save();render()}
+function saveName(){name=$('#name').value.trim();save();render()}
+function send(e){e.preventDefault();let q=$('#msg').value.trim();if(!q)return;chat.push(q, q.toLowerCase().includes('estudi')?'Divide el temario en bloques de 25 minutos y haz pausas breves.':'Anota lo pendiente, elige tres prioridades y reserva tiempo realista para cada una.');render()}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.tab));render();
+</script></body></html>
